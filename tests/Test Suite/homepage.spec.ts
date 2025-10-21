@@ -38,6 +38,27 @@ test  ("CF-004| Verify the 'Dapur Time' button is present and visible", async ({
   const Btn_DapurTime = page.getByRole('button', { name: 'Dapur Time' })
   await expect(Btn_DapurTime).toBeVisible({ timeout: 10000 });
   await expect(Btn_DapurTime).toHaveText('Dapur Time');
+  // Click it and verify navigation or change in page content
+  await Btn_DapurTime.click();
+
+  // Verify the new page content after clicking the button is present
+  await expect(page.getByText('Pilih Kategori')).toBeVisible();
+
+  //Verify the 'Sarapan' Button is present
+  const Btn_Sarapan = page.getByRole('button', { name: 'Sarapan' })
+  await expect(Btn_Sarapan).toBeVisible({ timeout: 10000 });
+  await expect(Btn_Sarapan).toHaveText('Sarapan');
+
+  //Verify the 'Makan Tengahari' Button is present
+  const Btn_MakanTengahari = page.getByRole('button', { name: 'Makan Tengahari' })
+  await expect(Btn_MakanTengahari).toBeVisible({ timeout: 10000 });
+  await expect(Btn_MakanTengahari).toHaveText('Makan Tengahari');
+
+  //Verify the 'Makan Malam' Button is present
+  const Btn_Malam = page.getByRole('button', { name: 'Makan Malam' })
+  await expect(Btn_Malam).toBeVisible({ timeout: 10000 });
+  await expect(Btn_Malam).toHaveText('Makan Malam');
+
 
 });
 
