@@ -13,8 +13,15 @@ tests/
 ├── Regression/ # Regression test cases*
 └── TestSuite/ # Core functional test cases (main test scripts)
 
-- To be added and created
+- The content for the folder with * will be add on later once the TestSuite folder is finised
 ```
+
+## ⚙️ Prerequisites
+
+Before running tests locally, make sure you have:
+
+- Node.js v18 or above
+- npm (comes with Node.js)
 
 ## ▶️ Run Tests
 
