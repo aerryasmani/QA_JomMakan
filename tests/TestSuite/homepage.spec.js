@@ -59,7 +59,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto(BaseURL);
 });
 
-/*
+
 //------- Test Cases ------//
 test('CF-001 | Verify homepage loads correctly', async ({ page }) => {
   await VerifyPageTitle(page);
@@ -131,7 +131,7 @@ test("CF-006| Verify the 'Soalan Lazim' button is present and visible", async ({
   await FaqButton_Back(page);
   await expect(Header2).toHaveText('Makan Apa Hari Ni?');
 });
-*/
+
 
 test("CF-007| Verify the footer content is present and visible", async ({ page }) => {  
   await Footer_text(page, 'Project by Aerry & Aizat')
