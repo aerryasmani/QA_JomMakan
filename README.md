@@ -5,7 +5,8 @@ Can checked the food randomizer here: https://jommakan.app/
 
 This repository contains end-to-end(E2E),Regression, and core test suites built using javascript on Playwright.
 
-#📁 Folder Structure
+## 📁 Folder Structure
+
 tests/
 ├── E2E/ # End-to-End test cases*
 ├── Regression/ # Regression test cases*
