@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { link } from 'fs';
 
 const BaseURL = 'https://jommakan.app';
 const PageTitle = 'JomMakan! - Makan Apa Hari Ni?';
@@ -24,11 +25,39 @@ async function CloseButton(page) {
   await button.click();
 }
 
+async function FaqButton(page) {
+  const button = page.getByRole('link', { name: 'Soalan Lazim' })
+
+  await expect(button).toBeVisible();
+  await expect(button).toHaveText('Soalan Lazim');
+  await button.click();
+}
+
+async function FaqButton_Back(page) {
+  const button = page.getByRole('link', { name: 'Kembali' })
+
+  await expect(button).toBeVisible();
+  await expect(button).toHaveText('Kembali');
+  await button.click();
+}
+
+async function Footer_text(page) {
+  const footer = page.getByRole('contentinfo');
+
+  await expect(footer).toBeVisible();
+  await expect(footer).toContainText('Project by Aerry & Aizat');
+}
+
+async function Footer_Button(page,linkName) {
+  const button = page.getByRole('link', { name: linkName });
+  await expect(button).toBeVisible();
+  await expect(button).toHaveAttribute('href', expectedURL);
+}
+
 // Setup
 test.beforeEach(async ({ page }) => {
   await page.goto(BaseURL);
 });
-
 
 /*
 //------- Test Cases ------//
@@ -36,7 +65,7 @@ test('CF-001 | Verify homepage loads correctly', async ({ page }) => {
   await VerifyPageTitle(page);
 });
 
-test  ("CF-002| Verify the Logo Is Present", async ({ page }) => {  
+test("CF-002| Verify the Logo Is Present", async ({ page }) => {  
   await expect(page).toHaveTitle(PageTitle);
 
   const Header1 = page.locator('h1');
@@ -44,7 +73,7 @@ test  ("CF-002| Verify the Logo Is Present", async ({ page }) => {
   await expect(Header1).toHaveText('JomMakan!')
 });
 
-test  ("CF-003| Verify the hero header content text is present", async ({ page }) => {  
+test("CF-003| Verify the hero header content text is present", async ({ page }) => {  
   await VerifyPageTitle(page);
 
   const Header2 = page.locator('h2');
@@ -57,9 +86,7 @@ test  ("CF-003| Verify the hero header content text is present", async ({ page }
 
 });
 
-
-
-test  ("CF-004| Verify the 'Dapur Time' button is present and visible", async ({ page }) => {  
+test("CF-004| Verify the 'Dapur Time' button is present and visible", async ({ page }) => {  
   
   await VerifyButton(page, 'Dapur Time')
 
@@ -76,8 +103,7 @@ test  ("CF-004| Verify the 'Dapur Time' button is present and visible", async ({
   await expect(Header2).toHaveText('Makan Apa Hari Ni?');
 });
 
-*/
-test  ("CF-005| Verify the 'Tapau' button is present and visible", async ({ page }) => {  
+test("CF-005| Verify the 'Tapau' button is present and visible", async ({ page }) => {  
   await VerifyButton(page, 'Tapau')
 
   const TapauCategory = ['Nasi', 'Mee', 'Roti Wrap', 'Sepinggan', 'Bakar Goreng', 'Ringan'];
@@ -92,4 +118,24 @@ test  ("CF-005| Verify the 'Tapau' button is present and visible", async ({ page
   const Header2 = page.locator('h2');
   await expect(Header2).toHaveText('Makan Apa Hari Ni?');
 
+});
+
+
+test("CF-006| Verify the 'Soalan Lazim' button is present and visible", async ({ page }) => {  
+  await FaqButton(page, 'Soalan Lazim')
+  await expect(page).toHaveURL('https://jommakan.app/soalan-lazim');
+
+  const Header2 = page.locator('h2');
+  await expect(Header2).toHaveText('Soalan Lazim');
+
+  await FaqButton_Back(page);
+  await expect(Header2).toHaveText('Makan Apa Hari Ni?');
+});
+*/
+
+test("CF-007| Verify the footer content is present and visible", async ({ page }) => {  
+  await Footer_text(page, 'Project by Aerry & Aizat')
+  //await Footer_Button(page, 'GitHub', 'https://github.com/aizatsyafiq/JomMakan');
+  //Trying to figure out why this is not working
+  
 });
