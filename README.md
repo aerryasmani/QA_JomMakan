@@ -53,6 +53,6 @@ Before running tests locally, make sure you have:
 
 | Folder       | Purpose                            | Example Test Type                    |
 | ------------ | ---------------------------------- | ------------------------------------ |
-| `E2E`        | Full user journey tests            | Login → Add to cart → Checkout       |
-| `Regression` | High-priority tests from past bugs | Payment validation                   |
+| `E2E`        | Full user journey tests            | Choose type of category → Type of meal → result       |
+| `Regression` | High-priority tests from past bugs | Result generated from randomizer                   |
 | `TestSuite`  | Core functions                     | Verify homepage, navigation, buttons |
