@@ -1,0 +1,34 @@
+#My first github action file
+
+name: Run Playwright TestSuite on Schedule
+
+on:
+  schedule:
+    - cron: '0 16 * * *' # 12 AM Malaysia Time (UTC+8)
+    - cron: '0 22 * * *' # 6 AM Malaysia Time (UTC+8)
+  workflow_dispatch: #Can be trigger manually
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Playwright tests
+        run: npx playwright test tests/TestSuite --reporter=html
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
